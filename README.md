@@ -18,12 +18,34 @@ type TimeEx struct {
 * `(te *TimeEx) StartOfWeek() time.Time` - returns date at the beginning of the week
 * `(te *TimeEx) EndOfWeek() time.Time` - returns date at the end of the week
 
-To change the weekday for beginning/end of week, set `TimeEx.beginningWeekday` to the weekday.
+## Usage
+* install package: `go install github.com/alexchee/go-time-ex`
+* import package:
+```
+import "timeEx"
+```
+* create a `TimeEx` for a `Time`:
+  ```
+  te := TimeEx{Time: time.Now()}
+  ```
+* Call any of the methods and it'll return a `Time`:
+  ex. `te.Midnight()`
+* If you want to change the starting weekday for a week (default is Sunday) for calls like `EndOfWeek()` or `StartOfWeek()`, set `beginningWeekday` to that Weekday:
+  ex. Use Monday as start of week.
+  ```
+  import "time"
+  te := TimeEx{Time: time.Now(), beginningWeekday: time.Monday}
+  ```
 
-Ex. Setting it to be Monday:
-```
-currentTime := TimeEx{time: time.now(), beginningWeekday: time.Monday}
-```
+## Tests
+`go test`
+
+## Benchmark
+`go test -bench=.`
 
 ## Contributing
 This is my experiment with Go, so it's probably riddled with problems. Please open up a PR and improve this!
+
+## TODO:
+[ ] implement/fix `StartOfWeek`
+[ ] figure out a cleaner way to write test cases
