@@ -57,6 +57,21 @@ func (te *TimeEx) EndOfWeek() time.Time {
   return t.AddDate(0, 0, daysOffset)
 }
 
+// Return start date of the month
+func (te *TimeEx) StartOfMonth() time.Time {
+  t := te.Time
+  return time.Date(t.Year(), t.Month(), 1, t.Hour(), t.Minute(), t.Second(), t.Nanosecond(), t.Location())
+}
+func (te *TimeEx) BeginningOfMonth() time.Time {
+  return te.StartOfMonth()
+}
+
+// Return last date of the month
+func (te *TimeEx) EndOfMonth() time.Time {
+  t := te.Time
+  return time.Date(t.Year(), t.Month()+1, 1, t.Hour(), t.Minute(), t.Second(), t.Nanosecond(), t.Location()).AddDate(0, 0, -1)
+}
+
 // Returns last weekday of the week, default Saturday
 func (te *TimeEx) EndingWeekday() time.Weekday {
   if te.beginningWeekday == time.Sunday {

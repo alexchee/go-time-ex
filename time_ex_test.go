@@ -127,6 +127,39 @@ func TestStartOfWeekStartingWednesday(t *testing.T) {
 	}
 }
 
+func TestBeginningOfMonth(t *testing.T) {
+	for _, test := range generateStartOfMonthCases() {
+		testTime := TimeEx{Time: test.startTime, beginningWeekday: time.Monday}
+		observed := testTime.BeginningOfMonth()
+		if !observed.Equal(test.expectedTime) {
+			t.Fatalf("(%v).BeginningOfMonth() = %v, want %v (%s)",
+				test.startTime, observed, test.expectedTime, test.description)
+		}
+	}
+}
+
+func TestStartOfMonth(t *testing.T) {
+	for _, test := range generateStartOfMonthCases() {
+		testTime := TimeEx{Time: test.startTime, beginningWeekday: time.Monday}
+		observed := testTime.StartOfMonth()
+		if !observed.Equal(test.expectedTime) {
+			t.Fatalf("(%v).StartOfMonth() = %v, want %v (%s)",
+				test.startTime, observed, test.expectedTime, test.description)
+		}
+	}
+}
+
+func TestEndOfMonth(t *testing.T) {
+	for _, test := range generateEndOfMonthCases() {
+		testTime := TimeEx{Time: test.startTime, beginningWeekday: time.Monday}
+		observed := testTime.EndOfMonth()
+		if !observed.Equal(test.expectedTime) {
+			t.Fatalf("(%v).EndOfMonth() = %v, want %v (%s)",
+				test.startTime, observed, test.expectedTime, test.description)
+		}
+	}
+}
+
 func TestEndingWeekday(t *testing.T) {
 	for _, test := range testEndingWeekdayCases {
 		testTime := TimeEx{beginningWeekday: test.beginningWeekday}

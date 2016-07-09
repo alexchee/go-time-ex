@@ -97,6 +97,28 @@ var startOfWeekWednesdayStrings = [...]TimeExTestInput{
   TimeExTestInput{"2016-01-01", "2015-12-30", "goes to previous year"},
 }
 
+
+var startOfMonthStrings = [...]TimeExTestInput{
+  TimeExTestInput{"2016-02-07", "2016-02-01", "on leap year"},
+  TimeExTestInput{"2015-02-17", "2015-02-01", "on short month"},
+  TimeExTestInput{"2016-06-17", "2016-06-01", "from middle of the month"},
+  TimeExTestInput{"2016-03-31", "2016-03-01", "from end of the month"},
+  TimeExTestInput{"2016-03-01", "2016-03-01", "from start of month"},
+  TimeExTestInput{"2016-01-20", "2016-01-01", "on Jan"},
+  TimeExTestInput{"2015-12-20", "2015-12-01", "on Dec"},
+}
+
+var endOfMonthStrings = [...]TimeExTestInput{
+  TimeExTestInput{"2016-02-07", "2016-02-29", "on leap year"},
+  TimeExTestInput{"2015-02-17", "2015-02-28", "on short month"},
+  TimeExTestInput{"2016-03-17", "2016-03-31", "from middle of the month"},
+  TimeExTestInput{"2016-06-30", "2016-06-30", "from end of the month"},
+  TimeExTestInput{"2016-06-27", "2016-06-30", "on 30 day month"},
+  TimeExTestInput{"2016-08-01", "2016-08-31", "from start of month"},
+  TimeExTestInput{"2015-01-08", "2015-01-31", "on Jan"},
+  TimeExTestInput{"2015-12-20", "2015-12-31", "on Dec"},
+}
+
 var testEndingWeekdayCases = []TimeExWeekdayTestResult{
   TimeExWeekdayTestResult{ time.Sunday, time.Saturday, "week begins on Sunday" },
   TimeExWeekdayTestResult{ time.Monday, time.Sunday, "week begins on Monday" },
@@ -202,4 +224,26 @@ func generateEndOfWeekSaturdayCases() []TimeExTestResult {
   }
 
   return testEndOfWeekCases
+}
+
+func generateStartOfMonthCases() []TimeExTestResult {
+  testStartOfMonthCases := []TimeExTestResult{}
+  for _, startOfMonthStr := range startOfMonthStrings {
+    inputTime, _ := time.Parse(testDateFormat, startOfMonthStr.startTime)
+    expectedTime, _ := time.Parse(testDateFormat, startOfMonthStr.expectedTime)
+    testStartOfMonthCases = append(testStartOfMonthCases, TimeExTestResult{inputTime, expectedTime, startOfMonthStr.description})
+  }
+
+  return testStartOfMonthCases
+}
+
+func generateEndOfMonthCases() []TimeExTestResult {
+  testEndOfMonthCases := []TimeExTestResult{}
+  for _, endOfMonthStr := range endOfMonthStrings {
+    inputTime, _ := time.Parse(testDateFormat, endOfMonthStr.startTime)
+    expectedTime, _ := time.Parse(testDateFormat, endOfMonthStr.expectedTime)
+    testEndOfMonthCases = append(testEndOfMonthCases, TimeExTestResult{inputTime, expectedTime, endOfMonthStr.description})
+  }
+
+  return testEndOfMonthCases
 }

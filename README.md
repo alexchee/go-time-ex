@@ -17,6 +17,8 @@ type TimeEx struct {
 * `(te *TimeEx) Noon() time.Time` - returns time at the midday - 12PM
 * `(te *TimeEx) StartOfWeek() time.Time` - returns date at the beginning of the week
 * `(te *TimeEx) EndOfWeek() time.Time` - returns date at the end of the week
+* `(te *TimeEx) StartOfMonth() time.Time` - returns date at the start of the month
+* `(te *TimeEx) EndOfMonth() time.Time` - returns date at the end of the month
 
 ## Usage
 * install package: `go install github.com/alexchee/go-time-ex`
@@ -47,5 +49,7 @@ import "timeEx"
 This is my experiment with Go, so it's probably riddled with problems. Please open up a PR and improve this!
 
 ## TODO:
-[ ] implement/fix `StartOfWeek`
+[X] implement/fix `StartOfWeek`
 [ ] figure out a cleaner way to write test cases
+[ ] More time methods
+[ ] optimize methods
