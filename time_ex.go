@@ -43,8 +43,11 @@ func (te *TimeEx) MiddleOfDay() time.Time {
 // Return date of the start of the week
 func (te *TimeEx) StartOfWeek() time.Time {
   t := te.Time
-  daysOffset := (int(t.Weekday()) - int(te.beginningWeekday)) % 7
+  daysOffset := ((int(t.Weekday()) - int(te.beginningWeekday)) + 7) % 7
   return t.AddDate(0, 0, -daysOffset)
+}
+func (te *TimeEx) BeginningOfWeek() time.Time {
+  return te.StartOfWeek()
 }
 
 // Return date of last day of the week

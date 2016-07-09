@@ -83,9 +83,42 @@ func TestEndOfWeekStartingSaturday(t *testing.T) {
 	}
 }
 
+func TestStartOfWeekStartingSunday(t *testing.T) {
+	for _, test := range generateStartOfWeekSundayCases() {
+		testTime := TimeEx{Time: test.startTime}
+		observed := testTime.StartOfWeek()
+		if !observed.Equal(test.expectedTime) {
+			t.Fatalf("(%v).StartOfWeek() = %v, want %v (%s)",
+				test.startTime, observed, test.expectedTime, test.description)
+		}
+	}
+}
+
+func TestBeginningOfWeekStartingSunday(t *testing.T) {
+	for _, test := range generateStartOfWeekSundayCases() {
+		testTime := TimeEx{Time: test.startTime}
+		observed := testTime.BeginningOfWeek()
+		if !observed.Equal(test.expectedTime) {
+			t.Fatalf("(%v).BeginningOfWeek() = %v, want %v (%s)",
+				test.startTime, observed, test.expectedTime, test.description)
+		}
+	}
+}
+
 func TestStartOfWeekStartingMonday(t *testing.T) {
-	for _, test := range generateBeginningOfWeekMondayCases() {
+	for _, test := range generateStartOfWeekMondayCases() {
 		testTime := TimeEx{Time: test.startTime, beginningWeekday: time.Monday}
+		observed := testTime.StartOfWeek()
+		if !observed.Equal(test.expectedTime) {
+			t.Fatalf("(%v).StartOfWeek() = %v, want %v (%s)",
+				test.startTime, observed, test.expectedTime, test.description)
+		}
+	}
+}
+
+func TestStartOfWeekStartingWednesday(t *testing.T) {
+	for _, test := range generateStartOfWeekWednesdayCases() {
+		testTime := TimeEx{Time: test.startTime, beginningWeekday: time.Wednesday}
 		observed := testTime.StartOfWeek()
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).StartOfWeek() = %v, want %v (%s)",

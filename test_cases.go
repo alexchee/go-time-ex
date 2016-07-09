@@ -81,6 +81,22 @@ var startOfWeekMondayStrings = [...]TimeExTestInput{
   TimeExTestInput{"2016-01-01", "2015-12-28", "goes to previous year"},
 }
 
+var startOfWeekSundayStrings = [...]TimeExTestInput{
+  TimeExTestInput{"2016-02-07", "2016-02-07", "from beginning of week"},
+  TimeExTestInput{"2016-02-09", "2016-02-07", "from middle of the week"},
+  TimeExTestInput{"2016-02-13", "2016-02-07", "from end of the week"},
+  TimeExTestInput{"2016-03-01", "2016-02-28", "goes to previous month"},
+  TimeExTestInput{"2016-01-01", "2015-12-27", "goes to previous year"},
+}
+
+var startOfWeekWednesdayStrings = [...]TimeExTestInput{
+  TimeExTestInput{"2016-02-03", "2016-02-03", "from beginning of week"},
+  TimeExTestInput{"2016-02-06", "2016-02-03", "from middle of the week"},
+  TimeExTestInput{"2016-02-09", "2016-02-03", "from end of the week"},
+  TimeExTestInput{"2016-03-01", "2016-02-24", "goes to previous month"},
+  TimeExTestInput{"2016-01-01", "2015-12-30", "goes to previous year"},
+}
+
 var testEndingWeekdayCases = []TimeExWeekdayTestResult{
   TimeExWeekdayTestResult{ time.Sunday, time.Saturday, "week begins on Sunday" },
   TimeExWeekdayTestResult{ time.Monday, time.Sunday, "week begins on Monday" },
@@ -122,16 +138,37 @@ func generateNoonCases() []TimeExTestResult {
   return testNoonCases
 }
 
-
-func generateBeginningOfWeekMondayCases() []TimeExTestResult {
-  testBeginningOfWeekCases := []TimeExTestResult{}
+func generateStartOfWeekMondayCases() []TimeExTestResult {
+  testStartinningOfWeekCases := []TimeExTestResult{}
   for _, startOfWeekStr := range startOfWeekMondayStrings {
     inputTime, _ := time.Parse(testDateFormat, startOfWeekStr.startTime)
   	expectedTime, _ := time.Parse(testDateFormat, startOfWeekStr.expectedTime)
-  	testBeginningOfWeekCases = append(testBeginningOfWeekCases, TimeExTestResult{inputTime, expectedTime, startOfWeekStr.description})
+  	testStartinningOfWeekCases = append(testStartinningOfWeekCases, TimeExTestResult{inputTime, expectedTime, startOfWeekStr.description})
 	}
 
-  return testBeginningOfWeekCases
+  return testStartinningOfWeekCases
+}
+
+func generateStartOfWeekSundayCases() []TimeExTestResult {
+  testStartinningOfWeekCases := []TimeExTestResult{}
+  for _, startOfWeekStr := range startOfWeekSundayStrings {
+    inputTime, _ := time.Parse(testDateFormat, startOfWeekStr.startTime)
+  	expectedTime, _ := time.Parse(testDateFormat, startOfWeekStr.expectedTime)
+  	testStartinningOfWeekCases = append(testStartinningOfWeekCases, TimeExTestResult{inputTime, expectedTime, startOfWeekStr.description})
+	}
+
+  return testStartinningOfWeekCases
+}
+
+func generateStartOfWeekWednesdayCases() []TimeExTestResult {
+  testStartinningOfWeekCases := []TimeExTestResult{}
+  for _, startOfWeekStr := range startOfWeekWednesdayStrings {
+    inputTime, _ := time.Parse(testDateFormat, startOfWeekStr.startTime)
+  	expectedTime, _ := time.Parse(testDateFormat, startOfWeekStr.expectedTime)
+  	testStartinningOfWeekCases = append(testStartinningOfWeekCases, TimeExTestResult{inputTime, expectedTime, startOfWeekStr.description})
+	}
+
+  return testStartinningOfWeekCases
 }
 
 func generateEndOfWeekMondayCases() []TimeExTestResult {
