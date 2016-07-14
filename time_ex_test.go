@@ -9,7 +9,7 @@ import (
 func TestMidnight(t *testing.T) {
 	for _, test := range generateMidnightCases() {
 		testTime := TimeEx{Time: test.startTime}
-		observed := testTime.Midnight()
+		observed := testTime.Midnight().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).Midnight() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -20,7 +20,7 @@ func TestMidnight(t *testing.T) {
 func TestBeginningOfDay(t *testing.T) {
 	for _, test := range generateMidnightCases() {
 		testTime := TimeEx{Time: test.startTime}
-		observed := testTime.BeginningOfDay()
+		observed := testTime.BeginningOfDay().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).BeginningOfDay() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -31,7 +31,7 @@ func TestBeginningOfDay(t *testing.T) {
 func TestEndOfDay(t *testing.T) {
 	for _, test := range generateEndOfDayCases() {
 		testTime := TimeEx{Time: test.startTime}
-		observed := testTime.EndOfDay()
+		observed := testTime.EndOfDay().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).BeginningOfDay() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -42,7 +42,7 @@ func TestEndOfDay(t *testing.T) {
 func TestNoon(t *testing.T) {
 	for _, test := range generateNoonCases() {
 		testTime := TimeEx{Time: test.startTime}
-		observed := testTime.Noon()
+		observed := testTime.Noon().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).BeginningOfDay() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -53,7 +53,7 @@ func TestNoon(t *testing.T) {
 func TestEndOfWeekStartingSunday(t *testing.T) {
 	for _, test := range generateEndOfWeekSundayCases() {
 		testTime := TimeEx{Time: test.startTime}
-		observed := testTime.EndOfWeek()
+		observed := testTime.EndOfWeek().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).EndOfWeek() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -64,7 +64,7 @@ func TestEndOfWeekStartingSunday(t *testing.T) {
 func TestEndOfWeekStartingMonday(t *testing.T) {
 	for _, test := range generateEndOfWeekMondayCases() {
 		testTime := TimeEx{Time: test.startTime, beginningWeekday: time.Monday}
-		observed := testTime.EndOfWeek()
+		observed := testTime.EndOfWeek().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).EndOfWeek() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -75,7 +75,7 @@ func TestEndOfWeekStartingMonday(t *testing.T) {
 func TestEndOfWeekStartingSaturday(t *testing.T) {
 	for _, test := range generateEndOfWeekSaturdayCases() {
 		testTime := TimeEx{Time: test.startTime, beginningWeekday: time.Saturday}
-		observed := testTime.EndOfWeek()
+		observed := testTime.EndOfWeek().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).EndOfWeek() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -86,7 +86,7 @@ func TestEndOfWeekStartingSaturday(t *testing.T) {
 func TestStartOfWeekStartingSunday(t *testing.T) {
 	for _, test := range generateStartOfWeekSundayCases() {
 		testTime := TimeEx{Time: test.startTime}
-		observed := testTime.StartOfWeek()
+		observed := testTime.StartOfWeek().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).StartOfWeek() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -97,7 +97,7 @@ func TestStartOfWeekStartingSunday(t *testing.T) {
 func TestBeginningOfWeekStartingSunday(t *testing.T) {
 	for _, test := range generateStartOfWeekSundayCases() {
 		testTime := TimeEx{Time: test.startTime}
-		observed := testTime.BeginningOfWeek()
+		observed := testTime.BeginningOfWeek().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).BeginningOfWeek() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -108,7 +108,7 @@ func TestBeginningOfWeekStartingSunday(t *testing.T) {
 func TestStartOfWeekStartingMonday(t *testing.T) {
 	for _, test := range generateStartOfWeekMondayCases() {
 		testTime := TimeEx{Time: test.startTime, beginningWeekday: time.Monday}
-		observed := testTime.StartOfWeek()
+		observed := testTime.StartOfWeek().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).StartOfWeek() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -119,7 +119,7 @@ func TestStartOfWeekStartingMonday(t *testing.T) {
 func TestStartOfWeekStartingWednesday(t *testing.T) {
 	for _, test := range generateStartOfWeekWednesdayCases() {
 		testTime := TimeEx{Time: test.startTime, beginningWeekday: time.Wednesday}
-		observed := testTime.StartOfWeek()
+		observed := testTime.StartOfWeek().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).StartOfWeek() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -130,7 +130,7 @@ func TestStartOfWeekStartingWednesday(t *testing.T) {
 func TestBeginningOfMonth(t *testing.T) {
 	for _, test := range generateStartOfMonthCases() {
 		testTime := TimeEx{Time: test.startTime, beginningWeekday: time.Monday}
-		observed := testTime.BeginningOfMonth()
+		observed := testTime.BeginningOfMonth().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).BeginningOfMonth() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -141,7 +141,7 @@ func TestBeginningOfMonth(t *testing.T) {
 func TestStartOfMonth(t *testing.T) {
 	for _, test := range generateStartOfMonthCases() {
 		testTime := TimeEx{Time: test.startTime, beginningWeekday: time.Monday}
-		observed := testTime.StartOfMonth()
+		observed := testTime.StartOfMonth().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).StartOfMonth() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
@@ -152,7 +152,7 @@ func TestStartOfMonth(t *testing.T) {
 func TestEndOfMonth(t *testing.T) {
 	for _, test := range generateEndOfMonthCases() {
 		testTime := TimeEx{Time: test.startTime, beginningWeekday: time.Monday}
-		observed := testTime.EndOfMonth()
+		observed := testTime.EndOfMonth().Time
 		if !observed.Equal(test.expectedTime) {
 			t.Fatalf("(%v).EndOfMonth() = %v, want %v (%s)",
 				test.startTime, observed, test.expectedTime, test.description)
